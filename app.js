@@ -6,6 +6,7 @@ const sequelize = require("./models").sequelize;
 app.use('/static', express.static('public'));
 app.set('view engine', 'pug');
 
+
 // const routes = require('./routes/index');
 const books = require('./routes/books');
 
