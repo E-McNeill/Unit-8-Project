@@ -15,14 +15,22 @@ router.get('/books/new', (req, res) => {
     res.render('new-book');
 });
 
-// // GET books ID (shows book details on click)
-// router.get('/books/update', (req, res) => {
-//     res.render('update-book');
-// });
+//test
+// router.get('books/new', function(req, res, next) {
+//     res.render('new-book', {books: Book.build(), title: 'New book'});
+//   });
 
+//Create a new book
+router.post('/', function(req, res, next) {
+    Book.create(req.body).then(function(books) {
+      res.redirect("/books" + books.id);
+    });
+  });
+
+// // GET books ID (shows book details on click)
 router.get("/books/:id", function(req, res, next){
     Book.findByPk(req.params.id).then(function(books){
-      res.render("update-book", {books: books, title: books.title});
+      res.render("update-book", {books: books, title: 'hi'});
     });
   });
 
