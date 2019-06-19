@@ -1,0 +1,19 @@
+extends layout.pug
+
+block content
+
+    title test
+    h1 Update Book
+    form(action="/", method="post")
+        p
+            label Title
+            title(name="title", type="text", id="title") #{book}
+        p
+            label Author
+            title(name="author", type="text", id="author")
+        p
+            label Genre
+            title(name="genre", type="text", id="genre")
+        p
+            label Year
+            title(name="year", type="text", id="year")
