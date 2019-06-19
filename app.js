@@ -7,9 +7,10 @@ app.use('/static', express.static('public'));
 app.set('view engine', 'pug');
 
 
-const routes = require('./routes/index');
+const routes = require('./routes');
 const books = require('./routes/books');
-
+app.use(routes);
+app.use('/books', books);
 
 //error handling
 app.use((err, req, res, next) => {
