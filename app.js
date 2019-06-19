@@ -18,7 +18,7 @@ app.use((err, req, res, next) => {
 });
 
 sequelize.sync().then(() => {
-    app.listen(3000, () => {
+    app.listen(80, () => {
         console.log('Application running on localhost:3000');
     }); 
 })
