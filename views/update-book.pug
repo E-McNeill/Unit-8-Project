@@ -1,19 +1,27 @@
 extends layout.pug
 
 block content
-
-    title test
     h1 Update Book
-    form(action="/", method="post")
+    form(action="/", method="")
+
         p
             label Title
-            title(name="title", type="text", id="title") #{book}
+            input(name="title", type="text", id="title", value=books.title)
         p
             label Author
-            title(name="author", type="text", id="author")
+            input(name="author", type="text", id="author", value=books.author)
         p
             label Genre
-            title(name="genre", type="text", id="genre")
+            input(name="genre", type="text", id="genre", value=books.genre)
         p
             label Year
-            title(name="year", type="text", id="year")
+            input(name="year", type="text", id="year", value=books.year)
+
+        p
+            a.button(type='submit') Update Book
+   
+    form(action="/", method="post")
+        p
+            a.button(href='/') Cancel
+        p
+            a.button(type='submit') Delete Book
