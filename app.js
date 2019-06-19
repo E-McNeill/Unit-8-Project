@@ -6,11 +6,8 @@ const sequelize = require("./models").sequelize;
 app.use('/static', express.static('public'));
 app.set('view engine', 'pug');
 
-
-const routes = require('./routes');
-const books = require('./routes/books');
-app.use(routes);
-app.use('/books', books);
+const mainRoutes = require('./routes');
+app.use(mainRoutes);
 
 //error handling
 app.use((err, req, res, next) => {
