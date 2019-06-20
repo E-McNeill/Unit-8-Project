@@ -17,13 +17,13 @@ router.get('/books', function(req, res, next) {
 
 //(new book form)
 router.get('/books/new', function(req, res, next) {
-    res.render('new-book', {books: Book.build(), title: 'Add a New book'}); //book or books?
+    res.render('new-book', {book: Book.build(), title: 'Add a New book'}); //book or books?
   });
 
 // POST books new (posts new book to the database)
 router.post('/books/new', function(req, res, next) {
-    Book.create(req.body).then(function(books) { //book or books?
-      res.redirect("/books/" + books.id); //book or books?
+    Book.create(req.body).then(function(book) { //book or books?
+      res.redirect("/books/" + book.id); //book or books?
     });
   });
 
