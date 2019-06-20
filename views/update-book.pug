@@ -2,7 +2,7 @@ extends layout.pug
 
 block content
     h1 Update Book
-    form(action="/", method="")
+    form(action=`/books/${books.id}` , method="POST")
 
         p
             label Title

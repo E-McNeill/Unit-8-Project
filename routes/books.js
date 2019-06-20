@@ -15,17 +15,19 @@ router.get('/books', function(req, res, next) {
 //     res.render('new-book');
 // });
 
-//test(new book form)
+//(new book form)
 router.get('/books/new', function(req, res, next) {
     res.render('new-book', {books: Book.build(), title: 'Add a New book'}); //book or books?
   });
 
-//Create a new book
-router.post('/books', function(req, res, next) {
+// POST books new (posts new book to the database)
+router.post('/books/new', function(req, res, next) {
     Book.create(req.body).then(function(books) { //book or books?
       res.redirect("/books/" + books.id); //book or books?
     });
   });
+
+
 
 // // GET books ID (shows book details on click)
 router.get("/books/:id", function(req, res, next){
@@ -41,11 +43,16 @@ router.get('/error', (req, res) => {
     res.render('error');
 });
 
-// POST books new (posts new book to the database)
 
 // POST books ID (Updates book info in database)
+router.put('/books/:id', function(req, res, next){
+    Book.findByPk(req.params.id).then(function(book){
+      return book.update(req.body);
+    }).then(function(book){
+      res.redirect("/books/" + article.id);    
+    });
+  });
+
 // POSt books ID DELETe (remove book)
-
-
 
 module.exports = router;
