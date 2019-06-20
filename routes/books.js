@@ -32,7 +32,7 @@ router.post('/books/new', function(req, res, next) {
 // // GET books ID (shows book details on click)
 router.get("/books/:id", function(req, res, next){
     Book.findByPk(req.params.id).then(function(books){
-      res.render("update-book", {books: books, /*title: books.title*/});
+      res.render("update-book", {books: books, title: books.title});
     });
   });
 
