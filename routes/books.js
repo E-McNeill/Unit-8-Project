@@ -23,7 +23,7 @@ router.get('/books/new', function(req, res, next) {
 // POST books new (posts new book to the database)
 router.post('/books/new', function(req, res, next) {
     Book.create(req.body).then(function(book) { //book or books?
-      res.redirect("/books/" + book.id); //book or books?
+      res.redirect("/books/"); //book or books?
     });
   });
 
@@ -44,15 +44,22 @@ router.get('/error', (req, res) => {
 });
 
 
-// POST books ID (Updates book info in database)
-router.put('/books/:id', function(req, res, next){
+// Update a book
+router.post('/books/:id', function(req, res, next){
     Book.findByPk(req.params.id).then(function(book){
       return book.update(req.body);
     }).then(function(book){
-      res.redirect("/books/" + article.id);    
+      res.redirect("/books");    
     });
   });
 
-// POSt books ID DELETe (remove book)
+// Delete a book
+router.post('/books/:id/delete', function(req, res, next){
+  Book.findByPk(req.params.id).then(function(book) {
+    return book.destroy();
+  }).then(function(){
+    res.redirect("/books");
+  });
+});
 
 module.exports = router;

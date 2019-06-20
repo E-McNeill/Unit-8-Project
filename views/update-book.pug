@@ -20,8 +20,8 @@ block content
         p
             input(type='submit' value='Update Book') 
    
-    form(action="/", method="post")
+    form(action=`/books/${books.id}/delete` , method="POST")
         p
             a.button(href='/') Cancel
         p
-            a.button(type='submit') Delete Book
+            input(type='submit' value="Delete Book") 
