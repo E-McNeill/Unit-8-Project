@@ -6,6 +6,9 @@ const sequelize = require("./models").sequelize;
 app.use('/static', express.static('public'));
 app.set('view engine', 'pug');
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 const mainRoutes = require('./routes');
 app.use(mainRoutes);
 
