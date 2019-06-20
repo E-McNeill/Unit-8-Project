@@ -11,26 +11,26 @@ router.get('/books', function(req, res, next) {
   });
 
 //GET books new (new book form)
-router.get('/books/new', (req, res) => {
-    res.render('new-book');
-});
+// router.get('/books/new', (req, res) => {
+//     res.render('new-book');
+// });
 
-//test
-// router.get('books/new', function(req, res, next) {
-//     res.render('new-book', {books: Book.build(), title: 'New book'});
-//   });
+//test(new book form)
+router.get('/books/new', function(req, res, next) {
+    res.render('new-book', {books: Book.build(), title: 'Add a New book'}); //book or books?
+  });
 
 //Create a new book
-router.post('/', function(req, res, next) {
-    Book.create(req.body).then(function(books) {
-      res.redirect("/books" + books.id);
+router.post('/books', function(req, res, next) {
+    Book.create(req.body).then(function(books) { //book or books?
+      res.redirect("/books/" + books.id); //book or books?
     });
   });
 
 // // GET books ID (shows book details on click)
 router.get("/books/:id", function(req, res, next){
     Book.findByPk(req.params.id).then(function(books){
-      res.render("update-book", {books: books, title: 'hi'});
+      res.render("update-book", {books: books, title: books.title});
     });
   });
 
