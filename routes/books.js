@@ -5,7 +5,7 @@ const Sequelize = require("sequelize");
 
 // //GET books (shows full list of books)
 router.get('/books', function(req, res, next) {
-    Book.findAll({order: [["Year", "DESC"]]}).then(function(books){
+    Book.findAll({order: [["id", "ASC"]]}).then(function(books){
       res.render('index', {books: books, title: 'All Books' });
     });
   });
