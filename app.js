@@ -13,12 +13,37 @@ const mainRoutes = require('./routes');
 app.use(mainRoutes);
 
 //error handling
-app.use((err, req, res, next) => {
-    res.locals.error = err;
-    res.status(err.status || 500)
+app.use(function(req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
     console.log('There has been a ' + err.status + ' error.')
-    res.render('error');
-});
+    res.render('page-not-found');
+    next(err);
+  });
+
+// error handling
+// app.use((req, res, next) => {
+//     const err = new Error('404');
+//     err.status = 404
+//     next(err);
+// });
+
+// app.use((req, res, next) => {
+//     const err = new Error('500');
+//     err.status = 500;
+//     next(err);
+// });
+
+// app.use((err, req, res, next) => {
+//     console.log('There has been a ' + err.status + ' error.')
+//     // res.locals.error = err;
+//     if (err.status = 500) {
+//         res.render('error')
+//     } else {
+//         res.render('page-not-found')
+//     }
+// });
+
 
 
 
