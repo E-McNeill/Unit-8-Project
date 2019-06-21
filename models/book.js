@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       validate: {
         notEmpty: {
-          msg: "Oops! The title is required."
+          msg: "The title is required."
         }
       }
     },
@@ -13,16 +13,14 @@ module.exports = (sequelize, DataTypes) => {
     type: DataTypes.STRING,
     validate: {
       notEmpty: {
-        msg: "Oops! An author is required."
+        msg: "An author is required."
       }
       }
     },
     genre: DataTypes.STRING,
     year: DataTypes.INTEGER,
-    // operatorsAliases: false
   });
   Book.associate = function(models) {
-    // associations can be defined here
   };
   return Book;
 };

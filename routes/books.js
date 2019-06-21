@@ -14,13 +14,13 @@ router.get('/books', function(req, res, next) {
 
 //Displays the form to add a new book
 router.get('/books/new', function(req, res, next) {
-    res.render('new-book', {book: Book.build(), title: 'Add a New book'}); //book or books?
+    res.render('new-book', {book: Book.build(), title: 'Add a New book'}); 
   });
 
 // Adds a new book to the database
 router.post('/books/new', function(req, res, next) {
-    Book.create(req.body).then(function(book) { //book or books?
-      res.redirect("/books/"); //book or books?
+    Book.create(req.body).then(function(book) { 
+      res.redirect("/books/"); 
     }).catch(function(err){
       if (err.name === "SequelizeValidationError"){
         res.render('new-book', {
@@ -42,7 +42,7 @@ router.get("/books/:id", function(req, res, next){
       if (books) {
       res.render("update-book", {books: books, title: books.title});
     } else {
-      res.sendStatus(404);
+      res.render('error')
     }
   }).catch(function(err){
     res.sendStatus(500);
@@ -51,27 +51,29 @@ router.get("/books/:id", function(req, res, next){
 
 // Updates details for a specific book
 router.post('/books/:id', function(req, res, next){
-    Book.findByPk(req.params.id).then(function(book){
-      if (book){
-      return book.update(req.body);
+    Book.findByPk(req.params.id).then(function(books){
+      if (books){
+      return books.update(req.body);
       } else {
         res.sendStatus(404);
       }
-    }).then(function(book){
-      res.redirect("/books");    
+    }).then(function(books){
+      res.redirect("/books/");    
     }).catch(function(err){
       if (err.name === "SequelizeValidationError"){
-        var book = Book.build(req.body);
-        book.id = req.params.id;
+        var books = Book.build(req.body);
+        books.id = req.params.id;
         res.render('update-book', {
-          book: book, 
-          title: 'Add a New book',
+          books: books, 
+          title: 'Update book',
         errors: err.errors
-        });
-      } else {
+        })
+      } 
+      else {
         throw err;
       }
-    }).catch(function(err){
+    })
+    .catch(function(err){
       res.sendStatus(500);
     });
   });

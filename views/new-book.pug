@@ -2,18 +2,24 @@ extends layout.pug
 
 block content
     h1 New Book
+    if (errors)
+        h2.error Oh no! We've got an error on our hands.
+        ul.error
+            each error in errors
+                li
+                    =error.message
     form(action="/books/new", method='post')
         p
-            label Title 
+            label(for="title") Title 
             input(type='text', name='title', id='title')
         p
-            label Author 
+            label(for="author") Author 
             input(type='text', name='author', id='author')
         p
-            label Genre 
+            label(for="genre") Genre 
             input(type='text', name='genre', id='genre')
         p
-            label Year 
+            label(for="year") Year 
             input(type='text', name='year', id='year')
 
         p
